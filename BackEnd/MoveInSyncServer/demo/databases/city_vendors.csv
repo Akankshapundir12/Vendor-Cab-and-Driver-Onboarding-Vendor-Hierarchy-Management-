@@ -1,0 +1,3 @@
+vendor_id,username,phone,name,level,status,children,regional_vendor,permissions,access_control
+100,city_vendor1,6666666666,City Vendor Vellore,city,active,"[local_vendor1,local_vendor2]",Regional Vendor 1,"[manage_drivers,assign_vehicles,view_reports]","{can_add_sub_vendor:false,can_edit_vehicles:true,can_edit_drivers:true}"
+101,city_vendor2,5555555555,City Vendor Chennai,city,active,"[local_vendor3]",Regional Vendor 2,"[manage_drivers,view_reports]","{can_add_sub_vendor:true,can_edit_vehicles:false,can_edit_drivers:true}"

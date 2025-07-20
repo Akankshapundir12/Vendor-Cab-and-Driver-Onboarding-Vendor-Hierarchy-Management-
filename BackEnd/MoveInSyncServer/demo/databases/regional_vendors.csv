@@ -1,0 +1,3 @@
+vendor_id,username,phone,name,level,status,children,super_vendor
+10,regional_vendor1,8888888888,Regional Vendor 1,regional,active,"[city_vendor1,city_vendor2]",super1
+11,regional_vendor2,7777777777,Regional Vendor 2,regional,active,"[city_vendor3]",super1

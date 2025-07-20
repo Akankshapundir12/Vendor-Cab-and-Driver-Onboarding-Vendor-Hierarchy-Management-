@@ -1,0 +1,4 @@
+vendor_id,username,phone,name,level,status,city_vendor
+1000,local_vendor1,4444444444,Local Vendor 1,local,active,city_vendor1
+1001,local_vendor2,3333333333,Local Vendor 2,local,active,city_vendor1
+1002,local_vendor3,2222222222,Local Vendor 3,local,active,city_vendor2

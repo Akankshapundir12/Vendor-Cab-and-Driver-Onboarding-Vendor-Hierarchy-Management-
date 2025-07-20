@@ -1,0 +1,7 @@
+vehicleId,driverNumber,driver,license,vehicle,vehicleNumber,status,onboarding,documents
+,12344665,Aman,000001,UP908001,,Active,Completed,3/3
+,12344666,Akanksha,000002,UP908002,,inactive,pending,1/3
+,12344667,Garima,000003,UP908003,,inactive,One step left,2/3
+,1234412111,Ram,000004,UP908001,,Active,Completed,3/3
+,1234412111,Shyam,000005,UP908021,,Active,Completed,3/3
+,1234412111,Ravan,000007,UP908028,,Active,Completed,3/3
