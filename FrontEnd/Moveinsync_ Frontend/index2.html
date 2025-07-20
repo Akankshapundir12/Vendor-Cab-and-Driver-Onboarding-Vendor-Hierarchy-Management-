@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fleet Management - Vehicles</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+  <header>
+    <div class="logo">VCDOS</div>
+    <nav>
+    <a href="#" onclick="navigateTo(event, 'index1.html')">Dashboard</a>
+    <a href="#" onclick="navigateTo(event, 'index4.html')">Vendors</a>
+    <a href="#" onclick="navigateTo(event, 'index2.html')">Vehicles</a>
+    <a href="#" onclick="navigateTo(event, 'index3.html')">Drivers</a>
+</nav>
+    <div class="avatar">A</div>
+  </header>
+
+  <div class="container">
+    <div class="header-section">
+      <div>
+        <h2>Fleet Management</h2>
+        <p>Manage your vehicles, track compliance, and handle assignments</p>
+      </div>
+      <button id="addVehicleBtn">+ Add Vehicle</button>
+    </div>
+
+    <div class="filters">
+      <input type="text" placeholder="Search vehicles..." id="searchInput">
+      <select id="statusFilter">
+        <option>All Status</option>
+        <option>Active</option>
+        <option>Inactive</option>
+      </select>
+    </div>
+
+  <table>
+  <thead>
+    <tr>
+      <th>Registration</th>
+      <th>Model</th>
+      <th>Type</th>
+      <th>Capacity</th>
+      <th>Fuel</th>
+      <th>Compliance</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="vehicleTable"></tbody>
+</table>
+
+<!-- Add Vehicle Modal -->
+<div class="modal" id="vehicleModal">
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <h3>Add New Vehicle</h3>
+    <form id="vehicleForm">
+      <input id="reg" required placeholder="Registration">
+      <input id="model" required placeholder="Model">
+      <input id="type" required placeholder="Type">
+      <input id="capacity" required type="number" placeholder="Capacity">
+      <input id="fuel" required placeholder="Fuel">
+      <input id="compliance" required placeholder="Compliance">
+      <select id="status">
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+      </select>
+      <button type="submit">Add Vehicle</button>
+    </form>
+  </div>
+</div>
+
+<!-- Manage Modal (same structure, different IDs) -->
+<div class="modal" id="manageModal">
+  <div class="modal-content">
+    <span class="close" id="closeManageModal">&times;</span>
+    <h3>Manage Vehicle</h3>
+    <form id="manageForm">
+      <input id="mReg" required>
+      <input id="mModel" required>
+      <input id="mType" required>
+      <input id="mCapacity" required>
+      <input id="mFuel" required>
+      <input id="mCompliance" required>
+      <select id="mStatus">
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+      </select>
+      <button type="submit">Update</button>
+    </form>
+  </div>
+</div>
+  </div>
+
+  <script src="script21.js"></script>
+</body>
+</html>

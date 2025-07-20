@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Super Admin Dashboard - VCDOS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style1.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="dashboard-header glass">
+    <div class="logo">VCDOS</div>
+    <nav>
+    <a href="#" onclick="navigateTo(event, 'index1.html')">Dashboard</a>
+    <a href="#" onclick="navigateTo(event, 'index4.html')">Vendors</a>
+    <a href="#" onclick="navigateTo(event, 'index2.html')">Vehicles</a>
+    <a href="#" onclick="navigateTo(event, 'index3.html')">Drivers</a>
+</nav>
+    <div class="user-menu">
+      <div class="avatar" onclick="toggleDropdown()">A</div>
+      <div class="dropdown" id="dropdown">
+        <p><strong>User Name</strong><br/><span>email@example.com</span></p>
+        <p class="role">super_admin</p>
+        <hr/>
+        <a href="#">Your Profile</a>
+        <a href="#">Sign out</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <section class="welcome-box glass">
+      <h2>Welcome, User!</h2>
+      <p>Email: <a href="mailto:email@example.com">email@example.com</a></p>
+      <p>Role: <strong>Super Admin</strong></p>
+    </section>
+
+    <section class="overview">
+      <h2>Super Admin Dashboard</h2>
+      <p>Manage your vendor hierarchy and access control policies.</p>
+
+      <div class="cards">
+        <div class="card glass">
+          <div class="icon">👥</div>
+          <h3>Total Drivers</h3>
+          <p id="total-drivers">--</p>
+        </div>
+        <div class="card glass">
+          <div class="icon">🛡️</div>
+          <h3>Pending Approvals</h3>
+          <p id="pending-approvals">--</p>
+        </div>
+        <div class="card glass">
+          <div class="icon">🚗</div>
+          <h3>Active Vehicles</h3>
+          <p id="active-vehicles">--</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="performance">
+      <h2>Regional Performance</h2>
+      <div class="chart-box glass">
+        <canvas id="performanceChart"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <script src="script1.js"></script>
+</body>
+</html>

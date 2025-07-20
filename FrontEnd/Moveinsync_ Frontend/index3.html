@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driver Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+  <header>
+    <div class="logo">VCDOS</div>
+    <nav>
+    <a href="#" onclick="navigateTo(event, 'index1.html')">Dashboard</a>
+    <a href="#" onclick="navigateTo(event, 'index4.html')">Vendors</a>
+    <a href="#" onclick="navigateTo(event, 'index2.html')">Vehicles</a>
+    <a href="#" onclick="navigateTo(event, 'index3.html')">Drivers</a>
+</nav>
+    <div class="avatar">A</div>
+  </header>
+
+  <div class="container">
+    <div class="header-section">
+      <div>
+        <h2>Drivers</h2>
+        <p>Manage drivers, documents, and onboarding status</p>
+      </div>
+      <button id="addDriverBtn" onclick="openAddDriverModal()">+ Add Driver</button>
+    </div>
+
+    <div class="filters">
+      <input type="text" id="searchDriver" placeholder="Search drivers...">
+      <select id="statusFilter">
+        <option>All Status</option>
+        <option>Active</option>
+        <option>Inactive</option>
+      </select>
+      <select id="verificationFilter">
+        <option>Pending Verifications</option>
+        <option>Completed</option>
+      </select>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Driver</th>
+          <th>License</th>
+          <th>Vehicle</th>
+          <th>Documents</th>
+          <th>Status</th>
+          <th>Onboarding</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="driverTable">
+        <!-- Dynamic rows from JS -->
+      </tbody>
+    </table>
+  </div>
+    <!-- Add Driver Modal -->
+<div id="addDriverModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>Add New Driver</h3>
+    <label>Driver Name</label>
+    <input type="text" id="driverName" placeholder="Enter driver's name" />
+
+    <label>License Number</label>
+    <input type="text" id="licenseNumber" placeholder="Enter license number" />
+
+    <label>Vehicle Assigned</label>
+    <input type="text" id="vehicleAssigned" placeholder="Enter vehicle info" />
+
+    <label>Driver number</label>
+    <input type="text" id="phonenumber" placeholder="Enter vehicle info" />
+
+    <label>Documents</label>
+    <div id="documentChecklist">
+      <label><input type="checkbox" value="Driving License (DL)"> Driving License (DL)</label><br>
+      <label><input type="checkbox" value="Vehicle Registration Certificate (RC)"> Vehicle Registration Certificate (RC)</label><br>
+      <label><input type="checkbox" value="Permit & Pollution Certificate"> Permit & Pollution Certificate</label>
+    </div>
+
+    <button id="submitDriver">Submit</button>
+    <button id="closeModal">Cancel</button>
+  </div>
+</div>
+
+<!-- 👇 Script should be here, outside modal-content -->
+<script src="script3.js"></script>
+
+</body>
+</html>

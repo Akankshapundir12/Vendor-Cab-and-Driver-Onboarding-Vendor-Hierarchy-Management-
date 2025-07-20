@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VCDOS - Vendor Cab & Driver Onboarding</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">📂 VCDOS</div>
+    <nav>
+      <a href="#">Features</a>
+      <a href="#">Technology</a>
+      <a href="#">Demo</a>
+    </nav>
+    <button class="sign-in" onclick="location.href='auth.html'">Sign In</button>
+  </header>
+
+  <main>
+    <div class="intro">
+      <h1>Vendor Cab and Driver Onboarding System and Vendors Hierarchy management</h1>
+      <p>A comprehensive multi-level vendor management system for fleet operations, vehicle onboarding, and driver management with hierarchical access control.</p>
+      <button class="get-started" onclick="location.href='auth.html'">Get Started →</button>
+    </div>
+
+    <div class="dashboard-preview">
+      <div class="window-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="title">VCDOS Dashboard</span>
+      </div>
+      <div class="dashboard-content">
+        <div class="vendor-hierarchy">
+          <h3>Vendor Hierarchy</h3>
+          <ul>
+            <li><span class="dot black"></span> Super Admin</li>
+            <li><span class="dot blue"></span> Regional Admin</li>
+            <li><span class="dot yellow"></span> City Admin</li>
+            <li><span class="dot green"></span> Local Admin</li>
+          </ul>
+        </div>
+
+        <div class="performance-overview">
+          <h3>Performance Overview</h3>
+          <canvas id="chart"></canvas>
+        </div>
+
+        <div class="quick-stats">
+        <h3>Quick Stats</h3>
+        <p>Total Vehicles: <strong id="totalVehicle">--</strong></p>
+        <p>Active Drivers: <strong id="activeDrivers">--</strong></p>
+        <p>Pending Approvals: <strong id="pendingApproval">--</strong></p>
+      </div>
+
+        <div class="recent-activity">
+          <h3>Recent Activity</h3>
+          <ul>
+            <li><span class="dot green"></span> New driver onboarded — <small>2m ago</small></li>
+            <li><span class="dot blue"></span> Vehicle document updated — <small>15m ago</small></li>
+            <li><span class="dot yellow"></span> Compliance alert resolved — <small>1h ago</small></li>
+            <li><span class="dot red"></span> Document verification pending — <small>3h ago</small></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

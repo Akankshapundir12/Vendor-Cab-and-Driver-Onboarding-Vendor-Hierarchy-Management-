@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vendor Hierarchy</title>
+  <link rel="stylesheet" href="style4.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">VCDOS</div>
+    <nav>
+    <a href="#" onclick="navigateTo(event, 'index1.html')">Dashboard</a>
+    <a href="#" onclick="navigateTo(event, 'index4.html')">Vendors</a>
+    <a href="#" onclick="navigateTo(event, 'index2.html')">Vehicles</a>
+    <a href="#" onclick="navigateTo(event, 'index3.html')">Drivers</a>
+</nav>
+    <div class="avatar">A</div>
+  </header>
+
+  <main class="container">
+    <div class="top-bar">
+      <h2>Vendors</h2>
+      <div class="vendor-actions">
+        <button class="btn purple">+ Add Regional Vendor</button>
+        <button class="btn gray">+ Add City Vendor</button>
+        <button class="btn gray">+ Add Local Vendor</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="sidebar">
+        <input type="text" placeholder="Search vendors..." class="search" />
+        <ul id="vendorTree">
+          <!-- Dynamic tree structure will be injected here -->
+        </ul>
+      </div>
+
+      <div class="vendor-info" id="vendorDetails">
+        <h3>Select a vendor to view details</h3>
+      </div>
+    </div>
+  </main>
+
+  <script src="script4.js"></script>
+</body>
+</html>

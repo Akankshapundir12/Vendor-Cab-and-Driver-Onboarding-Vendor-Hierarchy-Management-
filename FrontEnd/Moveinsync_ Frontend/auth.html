@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Authorization | VCDOS</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body.auth-body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('assets/car-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+    }
+
+    body.auth-body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: inherit;
+      filter: blur(3px) brightness(0.8);
+      z-index: 0;
+    }
+
+    .auth-box {
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.88);
+      padding: 2.5rem 2rem;
+      border-radius: 18px;
+      width: 340px;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(3px);
+      transform: perspective(600px) rotateX(3deg) scale(1.03);
+      transition: box-shadow 0.3s;
+    }
+
+    .auth-box:hover {
+      box-shadow: 0 16px 40px rgba(31, 38, 135, 0.37);
+      transform: perspective(600px) rotateX(0deg) scale(1.05);
+    }
+
+    .auth-box h2 {
+      margin-bottom: 1.2rem;
+      text-align: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .auth-box input {
+      width: 100%;
+      margin: 0.6rem 0;
+      padding: 0.65rem;
+      border: 1px solid #bbb;
+      border-radius: 7px;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.95);
+    }
+
+    .auth-box input:focus {
+      border: 1.5px solid #0078d7;
+      outline: none;
+    }
+
+    .auth-box button {
+      width: 48%;
+      padding: 0.8rem;
+      margin-top: 1rem;
+      background: linear-gradient(90deg, #0078d7, #00c6fb);
+      color: white;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .auth-box button:hover {
+      background: linear-gradient(90deg, #005fa3, #009ec3);
+      transform: scale(1.05);
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .toggle-button {
+      margin-top: 1rem;
+      text-align: center;
+      color: #333;
+      cursor: pointer;
+      font-size: 0.95rem;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body class="auth-body">
+
+  <div class="auth-box">
+    <h2 id="formTitle">Sign In</h2>
+    <form id="authForm">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="email" id="email" placeholder="Email ID" style="display: none;" />
+      <input type="password" id="password" placeholder="Password" required />
+
+      <div class="button-group">
+        <button type="button" id="signInBtn" onclick="login()">Sign In</button>
+        <button type="button" id="signUpBtn" onclick="signup()" style="display: none;">Sign Up</button>
+      </div>
+    </form>
+
+    <div class="toggle-button" onclick="toggleForm()">
+      Don't have an account? Sign Up
+    </div>
+  </div>
+
+  <script>
+    let isSignUp = false;
+
+    function toggleForm() {
+      isSignUp = !isSignUp;
+
+      document.getElementById("formTitle").innerText = isSignUp ? "Sign Up" : "Sign In";
+      document.getElementById("email").style.display = isSignUp ? "block" : "none";
+      document.getElementById("signUpBtn").style.display = isSignUp ? "inline-block" : "none";
+      document.getElementById("signInBtn").style.display = isSignUp ? "none" : "inline-block";
+
+      const toggleText = isSignUp
+        ? "Already have an account? Sign In"
+        : "Don't have an account? Sign Up";
+      document.querySelector(".toggle-button").innerText = toggleText;
+    }
+
+    async function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const res = await fetch("http://localhost:8080/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password })
+        });
+
+        const result = await res.json();
+
+        if (res.ok) {
+          
+          sessionStorage.setItem("username", result.username);
+          sessionStorage.setItem("name", result.name);
+          sessionStorage.setItem("vendor_type", result.vendor_type);
+          alert(result.name + " Logged in successfully!");
+          location.href = "index1.html";
+        } else {
+          alert("Login failed: " + (result.message || "Invalid credentials"));
+        }
+      } catch (err) {
+        console.error("Error:", err);
+        alert("Error: " + err.message);
+      }
+    }
+
+    async function signup() {
+      const name = document.getElementById("username").value;
+      const username = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const res = await fetch("http://localhost:8080/api/auth/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, username, password })
+        });
+
+        const result = await res.json();
+
+        if (res.ok) {
+          alert("Signup successful!");
+          sessionStorage.setItem("username", result.username);
+          sessionStorage.setItem("name", result.name);
+          sessionStorage.setItem("vendor_type", result.vendor_type);
+          alert(result.message + "! Redirecting to dashboard...");
+          location.href = "index1.html";
+        } else {
+          alert("Signup failed: " + (result.message || "Something went wrong"));
+        }
+      } catch (err) {
+        console.error("Error:", err);
+        alert("Error: " + err.message);
+      }
+    }
+  </script>
+</body>
+</html>
