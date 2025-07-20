@@ -364,7 +364,7 @@ import org.junit.jupiter.api.Test;
 - Keep model classes in a separate model/ directory
 - Consider a repository layer if switching to DB later
 
-####🤝 Contributing
+#### 🤝 Contributing
 -> Fork the repository
 -> Create your feature branch
 -> Commit your changes
