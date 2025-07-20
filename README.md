@@ -62,17 +62,18 @@ Access different admin levels by siginig up
 
 1. Clone the repository:
 
-git clone https://github.com/2003AjAy/MoveInSync.git
+git clone https://github.com/Akankshapundir12/Vendor-Cab-and-Driver-Onboarding-Vendor-Hierarchy-Management-
 
 2. Install dependencies:
 ```bash
-cd MoveInSync
-npm install
+install springboot
+install jre
+install java
 ```
 
 3. Start the development server:
 ```bash
-npm run dev
+
 ```
 
 ## 🏗 Project Structure
@@ -190,165 +191,176 @@ Detailed documentation is available in the below :
 
 ## 📚 Component Documentation
 
+---
+
 ### Core Components
 
-#### 1. VendorHierarchyTree
-```typescript
-import { VendorHierarchyTree } from '../components/VendorHierarchyTree';
+#### **1. AuthController.java**
+```java
+import org.springframework.web.bind.annotation.RestController;
 ```
-- **Purpose**: Displays the organizational hierarchy of vendors in a tree structure
-- **Props**:
-  - `vendors: Vendor[]` - Array of vendor data
-  - `onVendorSelect?: (vendor: Vendor) => void` - Callback for vendor selection
-  - `selectedVendorId?: string` - Currently selected vendor ID
-- **Features**:
-  - Interactive expand/collapse nodes
-  - Visual hierarchy representation
-  - Selection highlighting
-  - Drag-and-drop support
+- 📌 Purpose: Handles user authentication and login APIs.
+- 🔗 Routes:
+  - GET /api/user?username=xyz → Returns user details from users.csv
+- 🔄 Methods:
+  - getUser(String username)
+- 📁 Reads from: databases/users.csv
+- 🧠 Uses: CsvUserDatabase
 
-#### 2. ManageVehicleModal
-```typescript
-import { ManageVehicleModal } from '../components/ManageVehicleModal';
+---
+
+#### **2. CsvUserDatabase.java**
+```java
+import com.opencsv.CSVReader;
 ```
-- **Purpose**: Modal for vehicle management operations
-- **Props**:
-  - `vehicle: Vehicle` - Vehicle data
-  - `onClose: () => void` - Modal close handler
-  - `onUpdate: (id: string, updates: Partial<Vehicle>) => Promise<Vehicle>` - Update handler
-  - `onDelete: (id: string) => Promise<void>` - Delete handler
-  - `availableDrivers: Driver[]` - List of available drivers
-- **Features**:
-  - Vehicle details editing
-  - Document management
-  - Driver assignment
-  - Status updates
+- 📌 Purpose: Central utility for CSV file read/write operations.
+- 🔄 Methods:
+  - getUserByUsername(String username)
+  - getAllDrivers()
+  - getAllVehicles()
+  - writeUser(User user)
+- 📁 Manages:
+  - users.csv
+  - driver.csv
+  - vehicle.csv
+- 💡 Tip: Each line in CSV corresponds to a domain model like User, Driver, or Vehicle.
 
-#### 3. RoleBasedDashboard
-```typescript
-import RoleBasedDashboard from '../components/RoleBasedDashboard';
+---
+
+#### **3. DashboardController.java**
+```java
+import org.springframework.web.bind.annotation.RestController;
 ```
-- **Purpose**: Renders appropriate dashboard based on vendor level
-- **Features**:
-  - Dynamic dashboard switching
-  - Role-based content
-  - Permission-based feature access
-  - Real-time updates
+- 📌 Purpose: Serves summary data for dashboards.
+- 🔗 Routes:
+  - GET /api/dashboard → Returns dashboard stats
+- 📊 Returns JSON:
+  - { totalDrivers, pendingApprovals, activeVehicles }
+- 🧠 Aggregates data from: CsvUserDatabase
 
-### Authentication Components
+---
 
-#### 4. AuthProvider
-```typescript
-import { AuthProvider } from '../contexts/AuthContext';
+#### **4. DriverController.java**
+```java
+import org.springframework.web.bind.annotation.RestController;
 ```
-- **Purpose**: Manages authentication state and user permissions
-- **Features**:
-  - User authentication
-  - Permission management
-  - Role-based access control
-  - Session management
+- 📌 Purpose: Driver listing, addition, and status updates.
+- 🔗 Routes:
+  - GET /api/drivers
+  - POST /api/drivers/add
+- 🔄 Methods:
+  - getDrivers()
+  - addDriver(Driver driver)
+- 📁 Data Source: databases/driver.csv
 
-### Management Interfaces
+---
 
-#### 5. AddDriverModal
-```typescript
-import { AddDriverModal } from '../components/AddDriverModal';
+#### **5. VehicleController.java**
+```java
+import org.springframework.web.bind.annotation.RestController;
 ```
-- **Purpose**: Modal for adding new drivers
-- **Props**:
-  - `onClose: () => void` - Modal close handler
-  - `onAdd: (driver: Omit<Driver, 'id'>) => Promise<void>` - Add driver handler
-  - `vendorId: string` - Current vendor ID
-- **Features**:
-  - Driver information form
-  - Document upload
-  - Bank details collection
+- 📌 Purpose: Vehicle management API.
+- 🔗 Routes:
+  - GET /api/vehicles
+  - POST /api/vehicles/register
+- 🔄 Methods:
+  - getVehicles()
+  - addVehicle(Vehicle vehicle)
+- 📁 Data Source: databases/vehicle.csv
+
+---
+
+#### **6. VendorService.java**
+```java
+import org.springframework.stereotype.Service;
+```
+- 📌 Purpose: Shared business logic layer for controllers.
+- 🧠 Handles:
   - Validation
+  - CSV data delegation
+  - Logic centralization
+- 📁 Collaborates With:
+  - CsvUserDatabase
+  - Controller classes
 
-#### 6. ManageDriverModal
-```typescript
-import { ManageDriverModal } from '../components/ManageDriverModal';
+---
+
+### Configuration & Resources
+
+#### **7. application.properties**
+```properties
+spring.main.web-application-type=servlet
+server.port=8080
 ```
-- **Purpose**: Modal for managing existing drivers
-- **Props**:
-  - `driver: Driver` - Driver data
-  - `onClose: () => void` - Modal close handler
-  - `onUploadDocument` - Document upload handler
-  - `onUpdateStatus` - Status update handler
-- **Features**:
-  - Document management
-  - Status updates
-  - Performance tracking
+- 📌 Purpose: Sets Spring Boot app configuration.
+- 🛠 Used For:
+  - Port config
+  - Servlet handling
+  - DB credentials (if using MySQL later)
 
+---
 
+### UI Layer
 
+#### **8. static/**
+- 📌 Purpose: Static frontend files (JS, CSS, HTML).
+- 📁 Contents: Your index.html, JS scripts, etc.
 
+#### **9. templates/**
+- 📌 Purpose: Template rendering engine views (if using Thymeleaf).
+- 📁 Contents: Thymeleaf-compatible .html pages
 
-### Utility Components
+---
 
-#### 8. ProtectedRoute
-```typescript
-import ProtectedRoute from '../components/ProtectedRoute';
+### Testing
+
+#### **10. DemoApplicationTests.java**
+```java
+import org.junit.jupiter.api.Test;
 ```
-- **Purpose**: Route protection based on authentication and permissions
-- **Features**:
-  - Authentication check
-  - Permission verification
-  - Redirect handling
-  - Loading states
+- 📌 Purpose: Unit and integration test suite.
+- 🧪 Test Scope:
+  - Basic app context load
+  - Controller responses
+- 💡 Uses: Spring Boot Test
 
-### State Management
+---
 
-#### 9. VehicleStore
-```typescript
-import { useVehicleStore } from '../stores/vehicleStore';
-```
-- **Purpose**: Global vehicle state management
-- **Features**:
-  - CRUD operations
-  - Vehicle assignments
-  - Document management
-  - Compliance checking
+### Data Files
 
-#### 10. DriverStore
-```typescript
-import { useDriverStore } from '../stores/driverStore';
-```
-- **Purpose**: Global driver state management
-- **Features**:
-  - CRUD operations
-  - Document tracking
-  - Onboarding workflow
-  - Performance metrics
+#### **11. users.csv**
+- 📌 Fields: username, password, email
+- 📌 Used by: AuthController
 
+#### **12. driver.csv**
+- 📌 Fields: name, license, status, etc.
+- 📌 Used by: DriverController, DashboardController
 
+#### **13. vehicle.csv**
+- 📌 Fields: vehicleId, driverId, active, etc.
+- 📌 Used by: VehicleController, DashboardController
 
-// Example: Protected Route Usage
-<ProtectedRoute>
-  <RoleBasedDashboard />
-</ProtectedRoute>
-```
+---
 
-### Best Practices
+### ✅ Best Practices
 
-1. **Component Usage**:
-   - Always provide required props
-   - Handle loading and error states
-   - Implement proper cleanup in useEffect
+#### 🧹 CSV Handling
+- Always close FileReader/Writer using try-with-resources
+- Avoid concurrent writes to the same file
 
-2. **State Management**:
-   - Use appropriate store methods
-   - Handle async operations properly
-   - Implement error handling
+#### 🔄 Controller Logic
+- Keep controllers thin
+- Move business logic to VendorService
 
-3. **Performance**:
-   - Memoize expensive calculations
-   - Use proper key props in lists
-   - Implement lazy loading where appropriate
+#### ✅ Testing
+- Write unit tests for controllers and service layer
+- Validate CSV parsing with edge cases
 
+#### 🔐 Authentication
+- Add session/token logic if scaling
+- Store hashed passwords in production
 
+#### 📦 Folder Hygiene
+- Keep model classes in a separate model/ directory
+- Consider a repository layer if switching to DB later
 
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
