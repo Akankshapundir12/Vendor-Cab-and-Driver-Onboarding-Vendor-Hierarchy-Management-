@@ -50,13 +50,13 @@ Access different admin levels by siginig up
 
 ## 🛠 Technology Stack
 
-- **Frontend**: React.js 
-- **Backend**: Node.js, typescript.
-- **State Management**: Zustand
-- **UI Components**: Tailwind CSS, Lucide Icons, shadcn ui.
-- **Charts**: Recharts
-- **Type Checking**: TypeScript
-- **Database**: Neon DB, Drizzle oRM, PostgresSQL
+- **Frontend**: HTML, CSS, JavaScript  
+- **Backend**: Java (Spring Boot), Maven  
+- **State Management**: Local Storage, Context API  
+- **UI Components**: Bootstrap, Vanilla JS Components  
+- **Charts**: Chart.js  
+- **Type Checking**: Java (Strongly Typed), ESLint (for JavaScript)  
+- **Database**: PostgreSQL, JPA/Hibernate
 
 ## 📦 Installation
 
