@@ -61,19 +61,32 @@ Access different admin levels by siginig up
 ## 📦 Installation
 
 1. Clone the repository:
-
+```bash
 git clone https://github.com/Akankshapundir12/Vendor-Cab-and-Driver-Onboarding-Vendor-Hierarchy-Management-
+cd Vendor-Cab-and-Driver-Onboarding-Vendor-Hierarchy-Management-
+```
 
 2. Install dependencies:
 ```bash
-install springboot
-install jre
-install java
+# Prerequisites
+- Java 17+
+- JRE
+- Maven or Gradle
 ```
 
 3. Start the development server:
 ```bash
+# Using Maven
+./mvnw spring-boot:run
 
+# Or with Gradle
+./gradlew bootRun
+```
+
+4. Visit the app:
+```bash
+http://localhost:8080
+```
 ```
 
 ## 🏗 Project Structure
