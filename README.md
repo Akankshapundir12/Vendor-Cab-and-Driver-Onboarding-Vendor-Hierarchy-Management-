@@ -377,9 +377,9 @@ import org.junit.jupiter.api.Test;
 - Consider a repository layer if switching to DB later
 
 #### 🤝 Contributing
--> Fork the repository
--> Create your feature branch
--> Commit your changes
--> Push to the branch
--> Create a Pull Request
+- Fork the repository
+- Create your feature branch
+- Commit your changes
+- Push to the branch
+- Create a Pull Request
 
